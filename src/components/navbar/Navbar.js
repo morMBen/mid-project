@@ -8,9 +8,9 @@ const Navbar = () => {
 
     const menuOpen = () => {
         if (isOpen) {
-            return 'flex'
+            return '300px'
         } else {
-            return 'none'
+            return '0'
         }
     }
 
@@ -22,7 +22,7 @@ const Navbar = () => {
             <div className="hamburger" onClick={() => { setIsOpen(!isOpen) }}>
                 <UseAnimations animation={menu3} />
             </div>
-            <div className="nav-menu" style={{ display: menuOpen() }}>
+            <div className="nav-menu" style={{ maxHeight: menuOpen() }}>
                 <a className="menu-link" href="/">Home</a>
                 <a className="menu-link" href="/posts">Posts</a>
                 <a className="menu-link" href="/my-account">My Account</a>
