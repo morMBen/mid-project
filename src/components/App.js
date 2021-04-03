@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
+
+import Navbar from './navbar/Navbar';
 import Home from './home/Home';
 import MyAccount from './myAccount/MyAccount'
 import Posts from './posts/Posts'
@@ -8,9 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>
-        The site is under construction
-      </h1>
+      <Navbar />
       <BrowserRouter>
         <Route path="/" exact component={Home} />
         <Route path="/home" exact component={Home} />
