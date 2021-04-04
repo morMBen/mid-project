@@ -16,7 +16,7 @@ const Navbar = () => {
 
     return (
         <div className="my-nav">
-            <a className="menu-logo" href="">
+            <a className="menu-logo" href="/">
                 J<span>unior</span>
             </a>
             <div className="hamburger" onClick={() => { setIsOpen(!isOpen) }}>

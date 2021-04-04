@@ -8,10 +8,10 @@
     background: lightblue;
 }
 .nav-menu{
-display: flex;
-justify-content: space-between;
-align-items: center;
-position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 .menu-link{
     padding:1rem 2rem;
