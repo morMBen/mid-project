@@ -13,6 +13,13 @@
     align-items: center;
     position: relative;
 }
+.menu-name{
+    padding:1rem 2rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: darkblue;
+}
 .menu-link{
     padding:1rem 2rem;
     cursor: pointer;
@@ -50,6 +57,8 @@
     .nav-menu{
         overflow: hidden;
         flex-direction: column;
+        /* position: absolute; */
+        /* display: inline-flex; */
         width: 100%;
     }
     .hamburger{

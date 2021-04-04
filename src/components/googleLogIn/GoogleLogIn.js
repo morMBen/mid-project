@@ -1,40 +1,42 @@
 import React, { useState } from 'react';
 import GoogleLogIn from 'react-google-login';
 
-const MyGoogleLogIn = () => {
-    const [userInit, setUserInit] = useState('Sing In')
+const MyGoogleLogIn = ({ setUserlog, setUserDetails }) => {
     const [isSign, setIsSign] = useState(false);
-
-    const responseGoogle = (response) => {
-        if (!isSign) {
-            if (response.profileObj) {
-                setUserInit(response.profileObj.givenName[0])
-                setIsSign(true)
-            }
-        }
-        console.log(response)
-        console.log(response.profileObj)
-    }
 
     const signIn = () => {
         return (<GoogleLogIn
             // ↓↓↓↓↓↓ local ↓↓↓↓↓↓
-            clientId="202064866705-0icj94b2ehlcladq0p3gt5vn9b86ofrk.apps.googleusercontent.com"
+            // clientId="202064866705-0icj94b2ehlcladq0p3gt5vn9b86ofrk.apps.googleusercontent.com"
             // ↓↓↓↓↓↓ netlify url ↓↓↓↓↓↓
-            // clientId="668980613804-snpjdn3okjivv6l78rvaspbg0k2bp39l.apps.googleusercontent.com"
-            buttonText={userInit}
+            clientId="668980613804-snpjdn3okjivv6l78rvaspbg0k2bp39l.apps.googleusercontent.com"
+            buttonText='Sign in with Google'
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
-            style={{ textDecoration: 'none' }}
         />
 
         )
     }
+    const responseGoogle = async (response) => {
+        console.log(isSign)
+        if (!isSign) {
+            if (response.profileObj) {
+                setIsSign(true)
+                await setUserlog(true)
+            }
+            setUserDetails(response.profileObj)
+        }
+        // console.log(response)
+        console.log(response.profileObj)
+    }
+
+
+
 
     return (
         <div>
-            {!isSign && signIn()}
+            {signIn()}
         </div>
 
     )

@@ -1,5 +1,6 @@
 import './home.css'
 import MockAPI from '../../apis/MockAPI'
+import SideBar from '../../components/sidebar/Sidebar'
 
 const Home = () => {
     return (
@@ -8,8 +9,7 @@ const Home = () => {
                 <MockAPI />
                 <h1>Home Page</h1>
             </div>
-            <div className="side-bar">
-            </div>
+            <SideBar />
         </div >
     )
 }

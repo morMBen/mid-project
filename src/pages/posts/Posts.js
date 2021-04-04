@@ -1,6 +1,12 @@
+import SideBar from '../../components/sidebar/Sidebar'
 const Posts = () => {
     return (
-        <h1>Posts</h1>
+        <div className="container">
+            <div className="main">
+                <h1>New Post</h1>
+            </div>
+            <SideBar />
+        </div >
     )
 }
 
