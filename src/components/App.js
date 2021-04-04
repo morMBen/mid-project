@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 
 import Navbar from './navbar/Navbar';
-import Home from './home/Home';
-import MyAccount from './myAccount/MyAccount'
-import Posts from './posts/Posts'
+import Home from '../pages/home/Home';
+import MyAccount from '../pages/myAccount/MyAccount'
+import Posts from '../pages/posts/Posts'
 function App() {
 
   return (

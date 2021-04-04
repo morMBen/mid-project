@@ -10,10 +10,10 @@ import menu3 from 'react-useanimations/lib/menu3'
 
 const Navbar = () => {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isNavOpen, setIsNavOpen] = useState(false);
 
     const menuOpen = () => {
-        if (isOpen) {
+        if (isNavOpen) {
             return '300px'
         } else {
             return '0'
@@ -25,14 +25,14 @@ const Navbar = () => {
             <Link to='/' className="menu-logo">
                 J<span>unior</span>
             </Link>
-            <div className="hamburger" onClick={() => { setIsOpen(!isOpen) }}>
+            <div className="hamburger" onClick={() => { setIsNavOpen(!isNavOpen) }}>
                 <UseAnimations animation={menu3} />
             </div>
             <div className="nav-menu" style={{ maxHeight: menuOpen() }}>
-                <GoogleLogIn />
                 <Link to='/' className="menu-link">Home</Link>
                 <Link to='/posts' className="menu-link">Posts</Link>
                 <Link to='/my-account' className="menu-link">My Account</Link>
+                <GoogleLogIn />
             </div>
         </div >
     )

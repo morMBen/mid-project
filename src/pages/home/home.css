@@ -1,0 +1,13 @@
+.side-bar{
+    height: 100vh;
+    width: 25%;
+    background: red;
+}
+.container{
+    display: flex;
+}
+.main{
+    width: 75%;
+    height: 100vh;
+    background: blue;
+}
