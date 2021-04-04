@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import {
-    BrowserRouter as Router,
-    Link,
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import './navbar.css';
 
@@ -23,21 +20,19 @@ const Navbar = () => {
     }
 
     return (
-        <Router>
-            <div className="my-nav">
-                <a className="menu-logo" href="/">
-                    J<span>unior</span>
-                </a>
-                <div className="hamburger" onClick={() => { setIsOpen(!isOpen) }}>
-                    <UseAnimations animation={menu3} />
-                </div>
-                <div className="nav-menu" style={{ maxHeight: menuOpen() }}>
-                    <Link to='/' className="menu-link">Home</Link>
-                    <Link to='/posts' className="menu-link">Posts</Link>
-                    <Link to='/my-account' className="menu-link">My Account</Link>
-                </div>
-            </div >
-        </Router>
+        <div className="my-nav">
+            <Link to='/' className="menu-logo">
+                J<span>unior</span>
+            </Link>
+            <div className="hamburger" onClick={() => { setIsOpen(!isOpen) }}>
+                <UseAnimations animation={menu3} />
+            </div>
+            <div className="nav-menu" style={{ maxHeight: menuOpen() }}>
+                <Link to='/' className="menu-link">Home</Link>
+                <Link to='/posts' className="menu-link">Posts</Link>
+                <Link to='/my-account' className="menu-link">My Account</Link>
+            </div>
+        </div >
     )
 }
 
