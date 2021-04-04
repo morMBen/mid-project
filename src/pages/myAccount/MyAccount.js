@@ -1,4 +1,3 @@
-import SideBar from "../../components/sidebar/Sidebar";
 
 const MyAccount = () => {
     return (
@@ -6,7 +5,6 @@ const MyAccount = () => {
             <div className="main">
                 <h1>My Account</h1>
             </div>
-            <SideBar />
         </div >
     )
 }

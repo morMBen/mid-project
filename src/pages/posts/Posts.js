@@ -1,11 +1,12 @@
-import SideBar from '../../components/sidebar/Sidebar'
+import React, { useState } from 'react'
+import NewPost from '../../containers/newPost/NewPost'
+
 const Posts = () => {
+
+
     return (
-        <div className="container">
-            <div className="main">
-                <h1>New Post</h1>
-            </div>
-            <SideBar />
+        <div className="post-container">
+            <NewPost />
         </div >
     )
 }

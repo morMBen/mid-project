@@ -64,4 +64,7 @@
     .hamburger{
         display: flex;
     }
+    .menu-name{
+        display: none;
+    }
 }

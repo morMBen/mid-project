@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-
+import Sidebar from './sidebar/Sidebar'
 import Navbar from './navbar/Navbar';
 import Home from '../pages/home/Home';
 import MyAccount from '../pages/myAccount/MyAccount'
@@ -28,19 +28,27 @@ function App() {
         setUserlog={setUserlog}
         setUserDetails={setUserDetails}
       />}
-    <div className="App">
+    <div className="App" >
       <BrowserRouter>
         <Navbar
           userlog={userlog}
           openCloseLogMenu={openCloseLogMenu}
           userDetails={userDetails}
         />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/home" exact component={Home} />
-          <Route path="/my-account" exact component={MyAccount} />
-          <Route path="/posts" exact component={Posts} />
-        </Switch>
+        <div style={{ display: 'flex' }}>
+
+          <div style={{ width: '75%' }}>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/home" exact component={Home} />
+              <Route path="/my-account" exact component={MyAccount} />
+              <Route path="/posts" exact component={Posts} />
+            </Switch>
+          </div>
+          <div style={{ width: '25%' }}>
+            <Sidebar />
+          </div>
+        </div>
       </BrowserRouter>
     </div >
   </>
