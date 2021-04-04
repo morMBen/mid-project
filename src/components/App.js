@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 
 import Navbar from './navbar/Navbar';
@@ -12,20 +12,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        {/* <Route path="/" component={Navbar} /> */}
-        <Route path="/" exact component={Home} />
-        <Route path="/home" exact component={Home} />
-        <Route path="/my-account" exact component={MyAccount} />
-        <Route path="/posts" exact component={Posts} />
-        {/* <Link to='/'>
-          <button  >Home</button>
-        </Link>
-        <Link to='/my-account'>
-          <button  >My Account</button>
-        </Link>
-        <Link to='/posts'>
-          <button  >Posts</button>
-        </Link> */}
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/home" exact component={Home} />
+          <Route path="/my-account" exact component={MyAccount} />
+          <Route path="/posts" exact component={Posts} />
+        </Switch>
       </BrowserRouter>
     </div >
   );

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './navbar.css';
 
+import GoogleLogIn from '../googleLogIn/GoogleLogIn'
 import UseAnimations from "react-useanimations";
 import menu3 from 'react-useanimations/lib/menu3'
 
@@ -28,6 +29,7 @@ const Navbar = () => {
                 <UseAnimations animation={menu3} />
             </div>
             <div className="nav-menu" style={{ maxHeight: menuOpen() }}>
+                <GoogleLogIn />
                 <Link to='/' className="menu-link">Home</Link>
                 <Link to='/posts' className="menu-link">Posts</Link>
                 <Link to='/my-account' className="menu-link">My Account</Link>
