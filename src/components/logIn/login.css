@@ -26,3 +26,13 @@
 .log-in-button{
 margin-top: 1rem;
 }
+
+@media (max-width:768px){
+    .login-body{
+        width: 80%;
+        padding:1rem;
+    }
+    .login-body h2{
+        font-size: 20px;
+    }
+}
