@@ -28,7 +28,7 @@ const MyGoogleLogIn = ({ setUserlog, setUserDetails }) => {
             setUserDetails(response.profileObj)
         }
         // console.log(response)
-        console.log(response.profileObj)
+        // console.log(response.profileObj)
     }
 
 

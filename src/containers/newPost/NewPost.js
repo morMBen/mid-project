@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
+// import axios from 'axios';
 import Button from '../../components/buttons/Button'
 import Input from '../../containers/input/Input'
 
-const NewPost = () => {
-
+const NewPost = ({ setUsersD, usersD }) => {
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
     const [postImg, setPostImg] = useState('');
     const [postHeaderImg, setPostHeaderImg] = useState('');
-
     const [numberOfWords, setNumberOfWords] = useState(0);
 
     const setInput = (e) => {
@@ -24,11 +23,9 @@ const NewPost = () => {
                 break;
             case ('postContent'):
                 setPostContent(e.target.value)
-
                 if (e.target.value.length > 0) {
                     countNumOfWords()
                 } else (setNumberOfWords(0))
-                // console.log(e.target.value.[e.target.value.length - 1])
                 break;
             default:
         }
@@ -38,7 +35,11 @@ const NewPost = () => {
         const reg = new RegExp(/\n|\s/)
         const tempArr = postContent.split(reg)
         setNumberOfWords(tempArr.length)
-        console.log(tempArr.length)
+    }
+
+    const sendPost = () => {
+        console.log(usersD)
+
     }
 
     return (
@@ -79,7 +80,10 @@ const NewPost = () => {
                     </div>
                 </div>
                 <div>
-                    <Button buttonValue='Submit' />
+                    <Button
+                        buttonValue='Submit'
+                        onClick={sendPost}
+                    />
                     <h4>Number Of words:</h4>
                     <h4>{numberOfWords}</h4>
                 </div>
