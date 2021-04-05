@@ -39,24 +39,38 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
 
     const sendPost = async () => {
         const index = usersD.findIndex(e => e.googleId === userId)
+        const numOfArticle = usersD.reduce((acc, cur) => cur.article.length + acc, 0)
+        // console.log(numOfArticle)
+        const newArticle = {
+            id: numOfArticle + 1,
+            title: postTitle,
+            postImg: postImg,
+            postContent: postContent,
+            postHeaderImg: postHeaderImg,
+            numberOfWords: numberOfWords,
+            numOfArticle: numOfArticle
+        }
         console.log(usersD)
+        console.log(index)
+        const tempData =
+        {
+            ...usersD[index],
+            followersID: [],
+            likersID: [],
+            article: usersD.length === 0 ? [newArticle] : [...usersD[index].article, newArticle]
+        }
         setUsersD(usersD.map((e, i) => {
             if (i === index) {
-                console.log(index)
-                return {
-                    ...e, article: e.article.push({
-                        title: postTitle,
-                    })
-                }
-                // e.article.push({
-                //     title: postTitle,
-                // })
+                return tempData
+            } else {
+                return e
             }
-            console.log({ ...e })
-            return e;
         }))
-
-        // await axios.post('https://605b218e27f0050017c063ab.mockapi.io/users', usersD)
+        await axios.put(`https://605b218e27f0050017c063ab.mockapi.io/users/${usersD[index].ids}`, tempData)
+        setPostTitle('')
+        setPostContent('')
+        setPostImg('')
+        setPostHeaderImg('')
     }
 
     return (
