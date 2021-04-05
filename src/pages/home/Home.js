@@ -1,28 +1,46 @@
+import React, { useState } from 'react'
 import './home.css';
+
 // import MockAPI from '../../apis/MockAPI';
 import PrevCard from '../../containers/cards/PrevCard'
+import { useEffect } from 'react';
 
-const Home = ({ setUsersD, usersD, userId }) => {
+const Home = ({ usersD, userId, isUserlog }) => {
+
+    const [cardContent, setCardContent] = useState('')
+
+    useEffect(() => {
+        if (Array.isArray(usersD)) {
+            setCardContent(
+                <>
+                    <div className="ui segment">
+                        <h1>Home Page</h1>
+                        {usersD.map((user, index) => {
+                            return user.article.map((ar, i) => {
+                                return (
+                                    <React.Fragment key={`${user}_ar_${i}`}>
+                                        <PrevCard
+                                            uTitle={ar.title}
+                                            uImage={ar.postHeaderImg}
+                                            uName={user.name}
+                                            uText={ar.postContent}
+                                        />
+                                    </React.Fragment>
+                                )
+                            })
+                        })}
+                    </div>
+                </>
+            )
+        }
+    }, [usersD])
 
 
 
     return (
         <div className="container">
-            <div className="main">
-                <h1>Home Page</h1>
-                <h2>{usersD[0] ? usersD[0].article[usersD[0].article.length - 1].title : ''}</h2>
-
-                <img src={usersD[1] ? usersD[1].article[usersD[1].article.length - 1].postImg : ''} alt='img' />
-                <h4>{usersD[2] ? usersD[2].name : ''}</h4>
-                <p>{usersD[1] ? usersD[1].article[usersD[1].article.length - 1].postContent : ''}</p>
-
-                <PrevCard
-                    uTitle={usersD[0] ? usersD[0].article[usersD[0].article.length - 1].title : ''}
-                    tUmage={usersD[1] ? usersD[1].article[usersD[1].article.length - 1].postImg : ''}
-                    uName={ }
-                    uText={ }
-                />
-            </div>
+            {console.log(isUserlog)}
+            {isUserlog && cardContent}
         </div >
     )
 }

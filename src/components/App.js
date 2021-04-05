@@ -13,8 +13,6 @@ import MyAccount from '../pages/myAccount/MyAccount'
 import Posts from '../pages/posts/Posts'
 import LogIn from '../components/logIn/LogIn'
 
-let Context = React.createContext();
-
 function App() {
   //user loged or not
   const [userlog, setUserlog] = useState(false)
@@ -64,8 +62,6 @@ function App() {
 
   return (
     <>
-      {/* {usersData && <h1>{usersData[0] ? usersData[0].name : ''}</h1>} */}
-      {/* {userId && <h1>{userId}</h1>} */}
       {isLogInIsOpen && !userlog &&
         <LogIn
           openCloseLogMenu={openCloseLogMenu}
@@ -83,8 +79,11 @@ function App() {
             <div className="app-main">
               <Switch>
                 <Route path="/" exact component={Home} >
-                  <Home userId={userId} setUsersD={setUsersData} usersD={usersData} />
+                  <Home userId={userId} isUserlog={userlog} setUsersD={setUsersData} usersD={usersData} />
                 </Route>
+                {/* <Route path="/:id/" exact component={Home} >
+                  <Home userId={userId} setUsersD={setUsersData} usersD={usersData} />
+                </Route> */}
                 <Route path="/home" exact component={Home} />
                 <Route path="/my-account" exact component={MyAccount} />
                 <Route path="/posts" exact component={Posts} >

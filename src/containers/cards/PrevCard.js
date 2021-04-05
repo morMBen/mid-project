@@ -1,12 +1,30 @@
-const PrevCard = () => {
-    return (
-        <div className="main">
-            <h1>Home Page</h1>
-            <h2>{usersD[0] ? usersD[0].article[usersD[0].article.length - 1].title : ''}</h2>
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
-            <img src={usersD[1] ? usersD[1].article[usersD[1].article.length - 1].postImg : ''} alt='img' />
-            <h4>{usersD[2] ? usersD[2].name : ''}</h4>
-            <p>{usersD[1] ? usersD[1].article[usersD[1].article.length - 1].postContent : ''}</p>
+import './prevCard.css'
+
+const PrevCard = ({ uTitle, uName, uImage, uText }) => {
+
+    const [summary, setSummary] = useState(null)
+
+    useEffect(() => {
+        setSummary(uText.split('').slice(0, 250))
+    }, [uText])
+
+
+    return (
+        <div className="ui items">
+            <div className="item">
+                <div className="image">
+                    <img src={uImage} alt='img' />
+                </div>
+                <div className="content">
+                    <h2 className="header">{uTitle}</h2>
+                    <h4 className="meta">{uName}</h4>
+                    <div className="description">{summary} <Link to="/posts">read more</Link>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
