@@ -40,7 +40,7 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
     const sendPost = async () => {
         const index = usersD.findIndex(e => e.googleId === userId)
         const numOfArticle = usersD.reduce((acc, cur) => cur.article.length + acc, 0)
-        // console.log(numOfArticle)
+        console.log(numOfArticle)
         const newArticle = {
             id: numOfArticle + 1,
             title: postTitle,
@@ -51,7 +51,7 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
             numOfArticle: numOfArticle
         }
         console.log(usersD)
-        console.log(index)
+        // console.log(index)
         const tempData =
         {
             ...usersD[index],
@@ -59,13 +59,15 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
             likersID: [],
             article: usersD.length === 0 ? [newArticle] : [...usersD[index].article, newArticle]
         }
-        setUsersD(usersD.map((e, i) => {
+
+        await setUsersD(usersD.map((e, i) => {
             if (i === index) {
                 return tempData
             } else {
-                return e
+                return { ...e }
             }
         }))
+        console.log(tempData)
         await axios.put(`https://605b218e27f0050017c063ab.mockapi.io/users/${usersD[index].ids}`, tempData)
         setPostTitle('')
         setPostContent('')
@@ -113,7 +115,7 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
                 <div>
                     <Button
                         buttonValue='Submit'
-                        onClick={sendPost}
+                        onClick={() => { sendPost() }}
                     />
                     <h4>Number Of words:</h4>
                     <h4>{numberOfWords}</h4>

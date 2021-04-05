@@ -22,7 +22,11 @@ function App() {
   //user Id
   const [userId, setUserId] = useState(null)//???
   //users Data 
-  const [usersData, setUsersData] = useState(null)
+  const [usersData, setUsersData] = useState(async () => {
+    const data = await MockAPI();
+    setUsersData(data)
+  })
+
 
 
   const openCloseLogMenu = () => {
@@ -30,16 +34,26 @@ function App() {
   }
 
   useEffect(() => {
-    const tempData = async () => {
-      setUsersData(await MockAPI())
-    }
-    tempData()
-  }, [])
-
-  useEffect(() => {
     if (userDetails) {
       setUserId(userDetails.googleId)
-      console.log(usersData.findIndex(e => e.googleId === userDetails.googleId))
+    }
+  }, [userDetails])
+  // useEffect(() => {
+  //   const tempData = async () => {
+  //     const data = await MockAPI();
+  //     setUsersData(data)
+  //   }
+  //   tempData()
+  // }, [userId])
+
+  useEffect(() => {
+    if (userId && usersData && userDetails) {
+      // while (usersData.length !== 0) {
+
+      // }
+      // console.log(usersData)
+      // console.log(usersData)
+      // console.log(usersData.findIndex(e => e.googleId === userDetails.googleId))
       const index = usersData.findIndex(e => e.googleId === userDetails.googleId);
       if (index === -1) {
         axios.post(`https://605b218e27f0050017c063ab.mockapi.io/users`, {
@@ -52,16 +66,15 @@ function App() {
         })
       }
     }
-  }, [userDetails])
+  }, [userId, usersData, userDetails])
 
-  // useEffect(() => {
-  //   console.log(usersData)
-  // }, [usersData])
+
 
 
   return (<>
-    {/* {usersData && <h1>{usersData[0] ? usersData[0].name : ''}</h1>} */}
-    {userId && <h1>{userId}</h1>}
+    {console.log(usersData)}
+    {usersData && <h1>{usersData[0] ? usersData[0].name : ''}</h1>}
+    {/* {userId && <h1>{userId}</h1>} */}
     {isLogInIsOpen && !userlog &&
       <LogIn
         openCloseLogMenu={openCloseLogMenu}
