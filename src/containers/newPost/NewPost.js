@@ -48,7 +48,7 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
             postContent: postContent,
             postHeaderImg: postHeaderImg,
             numberOfWords: numberOfWords,
-            numOfArticle: numOfArticle
+            // numOfArticle: numOfArticle
         }
         console.log(usersD)
         // console.log(index)
