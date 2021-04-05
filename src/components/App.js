@@ -38,6 +38,7 @@ function App() {
 
   useEffect(() => {
     if (userDetails) {
+      setUserId(userDetails.googleId)
       console.log(usersData.findIndex(e => e.googleId === userDetails.googleId))
       const index = usersData.findIndex(e => e.googleId === userDetails.googleId);
       if (index === -1) {
@@ -47,6 +48,7 @@ function App() {
           name: userDetails.name,
           last: userDetails.familyName,
           first: userDetails.givenName,
+          article: [],
         })
       }
     }
@@ -80,7 +82,7 @@ function App() {
               <Route path="/home" exact component={Home} />
               <Route path="/my-account" exact component={MyAccount} />
               <Route path="/posts" exact component={Posts} >
-                <Posts setUserD={setUsersData} usersD={usersData} />
+                <Posts userId={userId} setUsersD={setUsersData} usersD={usersData} />
               </Route>
             </Switch>
           </div>

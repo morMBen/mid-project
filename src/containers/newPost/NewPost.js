@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 import Button from '../../components/buttons/Button'
 import Input from '../../containers/input/Input'
 
-const NewPost = ({ setUsersD, usersD }) => {
+const NewPost = ({ setUsersD, usersD, userId }) => {
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
     const [postImg, setPostImg] = useState('');
@@ -37,9 +37,26 @@ const NewPost = ({ setUsersD, usersD }) => {
         setNumberOfWords(tempArr.length)
     }
 
-    const sendPost = () => {
+    const sendPost = async () => {
+        const index = usersD.findIndex(e => e.googleId === userId)
         console.log(usersD)
+        setUsersD(usersD.map((e, i) => {
+            if (i === index) {
+                console.log(index)
+                return {
+                    ...e, article: e.article.push({
+                        title: postTitle,
+                    })
+                }
+                // e.article.push({
+                //     title: postTitle,
+                // })
+            }
+            console.log({ ...e })
+            return e;
+        }))
 
+        // await axios.post('https://605b218e27f0050017c063ab.mockapi.io/users', usersD)
     }
 
     return (
