@@ -32,7 +32,7 @@ const Navbar = ({ openCloseLogMenu, userlog, userDetails }) => {
             {userDetails && <div className="nav-menu" style={{ maxHeight: menuOpen() }}>
                 <Link to='/' className="menu-link">Home</Link>
                 <Link to='/posts' className="menu-link">Wtite New Post</Link>
-                <Link to='/my-account' className="menu-link">My Account</Link>
+                <Link to={`/my-account/${userDetails.name.split(' ').join('')}`} className="menu-link">My Account</Link>
                 <div className="menu-name" >{userDetails.givenName}</div>
             </div>}
             {!userlog &&

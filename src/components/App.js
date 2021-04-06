@@ -12,6 +12,7 @@ import Home from '../pages/home/Home';
 import MyAccount from '../pages/myAccount/MyAccount'
 import Posts from '../pages/posts/Posts'
 import LogIn from '../components/logIn/LogIn'
+import PostContainer from '../containers/postConainer/PostContainer'
 
 function App() {
   //user loged or not
@@ -42,7 +43,6 @@ function App() {
 
   useEffect(() => {
     if (userId && usersData && userDetails) {
-
       const index = usersData.findIndex(e => e.googleId === userDetails.googleId);
       if (index === -1) {
         axios.post(`https://605b218e27f0050017c063ab.mockapi.io/users`, {
@@ -62,6 +62,7 @@ function App() {
 
   return (
     <>
+      {console.log(userlog)}
       {isLogInIsOpen && !userlog &&
         <LogIn
           openCloseLogMenu={openCloseLogMenu}
@@ -81,13 +82,13 @@ function App() {
                 <Route path="/" exact component={Home} >
                   <Home userId={userId} isUserlog={userlog} setUsersD={setUsersData} usersD={usersData} />
                 </Route>
-                {/* <Route path="/:id/" exact component={Home} >
-                  <Home userId={userId} setUsersD={setUsersData} usersD={usersData} />
-                </Route> */}
                 <Route path="/home" exact component={Home} />
-                <Route path="/my-account" exact component={MyAccount} />
+                <Route path="/my-account/:name" exact component={MyAccount} />
                 <Route path="/posts" exact component={Posts} >
-                  <Posts userId={userId} setUsersD={setUsersData} usersD={usersData} />
+                  <Posts theUserId={userId} setUsersD={setUsersData} usersD={usersData} />
+                </Route>
+                <Route path="/:aoutor/:name" exact component={PostContainer} >
+                  <PostContainer userId={userId} />
                 </Route>
               </Switch>
             </div>
