@@ -10,6 +10,8 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
     const [postHeaderImg, setPostHeaderImg] = useState('');
     const [numberOfWords, setNumberOfWords] = useState(0);
 
+
+
     const setInput = (e) => {
         switch (e.target.id) {
             case ('setPostTitle'):

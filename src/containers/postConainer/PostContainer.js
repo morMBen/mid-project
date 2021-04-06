@@ -2,7 +2,9 @@ import { useParams } from "react-router";
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const PostContainer = ({ userId, usersD }) => {
+import Home from '../../pages/home/Home';
+
+const PostContainer = ({ userId, usersD, userlog }) => {
     const params = useParams()
     // const [aoutorAndTitle, setAoutorAndTitle] = useState(null)
     const [user, setUser] = useState(null)
@@ -10,12 +12,13 @@ const PostContainer = ({ userId, usersD }) => {
 
 
     useEffect(() => {
-        setUser(usersD.find(element => {
-            // console.log(element.name.split('').join(''))
-            return element.name.split(' ').join('') === params.aoutor
-        }))
-
-    }, [])
+        if (userlog) {
+            setUser(usersD.find(element => {
+                // console.log(element.name.split('').join(''))
+                return element.name.split(' ').join('') === params.aoutor
+            }))
+        }
+    }, [params.aoutor, userlog, usersD])
     useEffect(() => {
         if (user !== null) {
             setArticle(user.article.find(element => {
@@ -24,7 +27,7 @@ const PostContainer = ({ userId, usersD }) => {
             )
         }
 
-    }, [user])
+    }, [user, params.name])
 
     const displayPage = () => {
         return <div>
@@ -37,10 +40,10 @@ const PostContainer = ({ userId, usersD }) => {
 
     return (
         <div>
-            {console.log(article)}
+            {/* {console.log(article)} */}
             <div><h5>
             </h5>
-                {article && displayPage()}
+                {userlog && article ? displayPage() : <Home />}
             </div>
 
         </div>

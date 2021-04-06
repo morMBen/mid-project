@@ -86,16 +86,31 @@ function App() {
           <div style={{ display: 'flex' }}>
             <div className="app-main">
               <Switch>
-                <Route path="/" exact component={Home} >
-                  <Home userId={userId} isUserlog={userlog} setUsersD={setUsersData} usersD={usersData} />
+                <Route path="/" exact component={() =>
+                  <Home
+                    userId={userId}
+                    isUserlog={userlog}
+                    setUsersD={setUsersData}
+                    usersD={usersData}
+                  />
+                } >
                 </Route>
                 <Route path="/home" exact component={Home} />
                 <Route path="/my-account/:name" exact component={MyAccount} />
-                <Route path="/posts" exact component={Posts} >
-                  <Posts theUserId={userId} setUsersD={setUsersData} usersD={usersData} />
-                </Route>
-                <Route path="/:aoutor/:name" exact component={PostContainer} >
-                  <PostContainer userId={userId} usersD={usersData} />
+                <Route path="/posts" exact component={() =>
+                  <Posts
+                    theUserId={userId}
+                    setUsersD={setUsersData}
+                    usersD={usersData} />
+                } />
+
+                <Route path="/:aoutor/:name" exact component={() =>
+                  <PostContainer
+                    userId={userId}
+                    usersD={usersData}
+                    userlog={userlog}
+                  />
+                } >
                 </Route>
               </Switch>
             </div>

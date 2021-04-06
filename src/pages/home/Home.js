@@ -38,7 +38,7 @@ const Home = ({ usersD, userId, isUserlog }) => {
                 </>
             )
         }
-    }, [usersD])
+    }, [usersD, isUserlog, userId])
 
     useEffect(() => {
         setWelcomPage(<div style={{ height: "90vh" }}>
