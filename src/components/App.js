@@ -43,16 +43,23 @@ function App() {
 
   useEffect(() => {
     if (userId && usersData && userDetails) {
+      console.log(usersData)
       const index = usersData.findIndex(e => e.googleId === userDetails.googleId);
       if (index === -1) {
-        axios.post(`https://605b218e27f0050017c063ab.mockapi.io/users`, {
+        const starterData = {
           googleId: userDetails.googleId,
           avatar: userDetails.imageUrl,
           name: userDetails.name,
           last: userDetails.familyName,
           first: userDetails.givenName,
           article: [],
-        })
+        }
+        const fetch = async () => {
+          const temp = await axios.post(`https://605b218e27f0050017c063ab.mockapi.io/users`, starterData)
+          setUsersData(usersData ? [{ ...starterData }] : [...usersData, { ...starterData }])
+          console.log(temp)
+        }
+        fetch();
       }
     }
   }, [userId, usersData, userDetails])
@@ -62,7 +69,7 @@ function App() {
 
   return (
     <>
-      {console.log(userlog)}
+      {console.log(usersData)}
       {isLogInIsOpen && !userlog &&
         <LogIn
           openCloseLogMenu={openCloseLogMenu}
@@ -88,7 +95,7 @@ function App() {
                   <Posts theUserId={userId} setUsersD={setUsersData} usersD={usersData} />
                 </Route>
                 <Route path="/:aoutor/:name" exact component={PostContainer} >
-                  <PostContainer userId={userId} />
+                  <PostContainer userId={userId} usersD={usersData} />
                 </Route>
               </Switch>
             </div>

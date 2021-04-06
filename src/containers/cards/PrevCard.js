@@ -12,17 +12,20 @@ const PrevCard = ({ userId, uTitle, uName, uImage, uText, isMyArticle, articleId
         setSummary(uText.split('').slice(0, 250))
     }, [uText])
 
-    const hoverStyling = () => {
-        setIsHovered(!isHovered)
+    const hoverStylingOn = () => {
+        setIsHovered(true)
+    }
+    const hoverStylingOff = () => {
+        setIsHovered(false)
     }
 
 
     return (
-        <Link to={`/${uName.split(' ').join('')}/${uTitle.split(' ').join('')}'`}>
+        <Link to={`/${uName.split(' ').join('')}/${uTitle.split(' ').join('')}`}>
             <div
                 id={userId}
-                onMouseEnter={hoverStyling}
-                onMouseLeave={hoverStyling}
+                onMouseEnter={hoverStylingOn}
+                onMouseLeave={hoverStylingOff}
                 className="ui items"
                 style={{ background: isHovered ? '#dadada' : '' }}
             >
