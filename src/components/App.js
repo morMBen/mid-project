@@ -14,6 +14,13 @@ import Posts from '../pages/posts/Posts'
 import LogIn from '../components/logIn/LogIn'
 import PostContainer from '../containers/postConainer/PostContainer'
 
+
+
+
+import ToDelete from './ToDelete'
+
+
+
 function App() {
   //user loged or not
   const [userlog, setUserlog] = useState(false)
@@ -70,6 +77,9 @@ function App() {
 
   return (
     <>
+
+      <ToDelete />
+
       {isLogInIsOpen && !userlog &&
         <LogIn
           openCloseLogMenu={openCloseLogMenu}
@@ -100,7 +110,7 @@ function App() {
                   <MyAccount
                     userId={userId}
                     isUserlog={userlog}
-                    setUsersD={setUsersData}
+                    setUsersData={setUsersData}
                     usersD={usersData}
                   />}
                 />

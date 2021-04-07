@@ -23,7 +23,7 @@ const MyAccount = ({ usersD, userId, isUserlog, setUsersData }) => {
                                                 uName={user.name}
                                                 uText={ar.postContent}
                                                 numberOfWords={ar.numberOfWords}
-                                                articleId={i + 1}
+                                                articleId={ar.id}
                                                 isMyArticle={isUserlog ? userId === user.googleId ? true : false : false}
                                                 deletedItem={true}
                                                 setUsersData={setUsersData}

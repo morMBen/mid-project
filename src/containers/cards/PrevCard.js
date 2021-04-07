@@ -1,3 +1,4 @@
+import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
@@ -23,12 +24,28 @@ const PrevCard = ({ currentArticleData, currentUserData, usersD, setUsersData, d
 
     const deleteItem = () => {
         const userIndex = usersD.findIndex((e) => e.googleId === userId)
-        const shallowData = [...usersD]
-        shallowData.splice(userIndex, 1)
-        const tempData = [...shallowData, currentUserData]
-        console.log(usersD)
-        console.log(tempData)
-        // console.log(currentArticleData)
+        const articleIndex = currentUserData.article.findIndex((e) => e.id === articleId)
+
+        const shallowArticleData = [...currentUserData.article]
+        shallowArticleData.splice(articleIndex, 1)
+        const tempArticle = shallowArticleData;
+
+        const shallowUserData = [...usersD]
+        shallowUserData.splice(userIndex, 1)
+        const tempDataToUpdate = [...shallowUserData, { ...currentUserData, article: tempArticle }]
+
+
+        // console.log({ ...currentUserData, article: tempArticle })
+        // console.log(usersD)
+
+
+        setUsersData(tempDataToUpdate)
+        setItemOnApi({ ...currentUserData, article: tempArticle })
+    }
+
+
+    const setItemOnApi = async (dataToSet) => {
+        await axios.put(`https://605b218e27f0050017c063ab.mockapi.io/users/${currentUserData.ids}`, dataToSet)
     }
 
     const editItem = () => {
