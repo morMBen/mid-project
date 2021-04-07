@@ -23,7 +23,7 @@ const Home = ({ usersD, userId, isUserlog }) => {
                                         <PrevCard
                                             userId={userId}
                                             uTitle={ar.title}
-                                            uImage={ar.postHeaderImg}
+                                            uImage={ar.postImg}
                                             uName={user.name}
                                             uText={ar.postContent}
                                             numberOfWords={ar.numberOfWords}

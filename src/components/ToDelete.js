@@ -1,4 +1,7 @@
 import React, { Component, useState } from 'react';
+
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
@@ -30,14 +33,16 @@ const ToDelete = () => {
     }
     const onEditorStateChange2 = (e) => {
         setEditorState2(e)
-
     }
     const onEditorStateChange = (e) => {
         setEditorState(e)
         console.log(saveToHtml)
     }
+    // var parse = require('html-react-parser');
     return (
+
         <>
+            { ReactHtmlParser(saveToHtml)}
             <button onClick={onSaveToHtml}>save</button>
             <button onClick={onGrabFromDraft}>delete</button>
             <Editor

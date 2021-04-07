@@ -78,7 +78,7 @@ function App() {
   return (
     <>
 
-      <ToDelete />
+      {/* <ToDelete /> */}
 
       {isLogInIsOpen && !userlog &&
         <LogIn

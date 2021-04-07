@@ -1,7 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-
+import ReactHtmlParser from 'react-html-parser'
+import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import './prevCard.css'
 
@@ -11,7 +12,10 @@ const PrevCard = ({ currentArticleData, currentUserData, usersD, setUsersData, d
     const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
-        setSummary(uText.split('').slice(0, 250))
+        if (uText) {
+
+            setSummary(uText.split('').slice(0, 250).join(''))
+        }
     }, [uText])
 
     const hoverStylingOn = (e) => {
@@ -72,7 +76,7 @@ const PrevCard = ({ currentArticleData, currentUserData, usersD, setUsersData, d
                                 <h4 className="meta">{uName}</h4>
                                 {isMyArticle && <div className="meta"> My {articleId} Story <i className="book icon" /></div>}
                             </div>
-                            <div className="description">{summary}<h5>{Math.round(numberOfWords / 200)} Minuts reading</h5>
+                            <div className="description">{ReactHtmlParser(summary)}<h5>{Math.round(numberOfWords / 200)} Minuts reading</h5>
                             </div>
                         </div>
                     </div>

@@ -3,12 +3,22 @@ import axios from 'axios';
 import Button from '../../components/buttons/Button'
 import Input from '../../containers/input/Input'
 
+
+
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import { convertToRaw } from 'draft-js';
+import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
 const NewPost = ({ setUsersD, usersD, userId }) => {
     const [postTitle, setPostTitle] = useState('');
-    const [postContent, setPostContent] = useState('');
+    // const [postContent, setPostContent] = useState('');
     const [postImg, setPostImg] = useState('');
     const [postHeaderImg, setPostHeaderImg] = useState('');
     const [numberOfWords, setNumberOfWords] = useState(0);
+
+    const [editorState, setEditorState] = useState(null)
+    const [saveToHtml, setSaveToHtml] = useState(null)
 
     const formatDate = (date) => {
         var d = new Date(date),
@@ -30,17 +40,11 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
             case ('setPostTitle'):
                 setPostTitle(e.target.value)
                 break;
-            case ('setPostHeaderImg'):
-                setPostHeaderImg(e.target.value)
-                break;
+            // case ('setPostHeaderImg'):
+            //     setPostHeaderImg(e.target.value)
+            //     break;
             case ('setPostImg'):
                 setPostImg(e.target.value)
-                break;
-            case ('postContent'):
-                setPostContent(e.target.value)
-                if (e.target.value.length > 0) {
-                    countNumOfWords()
-                } else (setNumberOfWords(0))
                 break;
             default:
         }
@@ -48,7 +52,7 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
 
     const countNumOfWords = () => {
         const reg = new RegExp(/\n|\s/)
-        const tempArr = postContent.split(reg)
+        const tempArr = saveToHtml.split(reg)
         setNumberOfWords(tempArr.length)
     }
 
@@ -64,7 +68,7 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
             id: numOfArticle + 1,
             title: postTitle,
             postImg: postImg,
-            postContent: postContent,
+            postContent: saveToHtml,
             postHeaderImg: postHeaderImg,
             numberOfWords: numberOfWords,
             date: formatDate(new Date())
@@ -88,9 +92,19 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
         console.log(tempData)
         await axios.put(`https://605b218e27f0050017c063ab.mockapi.io/users/${usersD[index].ids}`, tempData)
         setPostTitle('')
-        setPostContent('')
+        setEditorState('<p></p>')
         setPostImg('')
         setPostHeaderImg('')
+    }
+
+    const onEditorStateChange = (e) => {
+        setEditorState(e)
+        if (editorState) {
+            setSaveToHtml(draftToHtml(convertToRaw(e.getCurrentContent())))
+        }
+        if (saveToHtml) {
+            countNumOfWords(saveToHtml)
+        }
     }
 
     return (
@@ -104,30 +118,33 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
                     inputTitle='Title'
                     typingErrorText='You must enter title'
                 />
-                <Input
-                    id='setPostHeaderImg'
-                    onUserChange={setInput}
-                    userValue={postHeaderImg}
-                    inputTitle='Header Image'
-                    typingErrorText='You must enter a valid url'
-                />
+
                 <Input
                     id='setPostImg'
                     onUserChange={setInput}
                     userValue={postImg}
-                    inputTitle='Content Image'
+                    inputTitle='Story Image'
                     typingErrorText='You must enter a valid url'
                 />
                 <div>
                     <h2>Post Content</h2>
-                    <div>
-                        <textarea
+                    <div style={{ minHeight: "100%" }}>
+                        {/* <textarea
                             id='postContent'
                             onChange={setInput}
                             value={postContent}
                             style={{ width: "100%", height: '60vh' }}
                         >
-                        </textarea>
+                        </textarea> */}
+                        <Editor
+                            toolbarStyle={{}}
+                            wrapperStyle={{ margin: '0', padding: '0.2rem', minHeight: "50vh", width: "100%", backgroundColor: '#d3d3d3', occupy: "100%" }}
+                            editorStyle={{ width: "100%", minHeight: '50vh', background: '#fff' }}
+                            editorState={editorState}
+                            wrapperClassName="demo-wrapper"
+                            editorClassName="demo-editor"
+                            onEditorStateChange={onEditorStateChange}
+                        />
                     </div>
                 </div>
                 <div>

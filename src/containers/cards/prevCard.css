@@ -1,6 +1,7 @@
 .p-card{
     transform: scale(1);
     height: 100%;
+    min-width: 100%;
     transition: 0.15s all;
 }
 .p-card:hover{
@@ -23,4 +24,8 @@
 }
 .p-card img{
     height: 100px;
+}
+
+.description img {
+    display: none;
 }
