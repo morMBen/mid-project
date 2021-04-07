@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import './prevCard.css'
 
-const PrevCard = ({ userId, uTitle, uName, uImage, uText, isMyArticle, articleId }) => {
+const PrevCard = ({ numberOfWords, userId, uTitle, uName, uImage, uText, isMyArticle, articleId }) => {
 
     const [summary, setSummary] = useState(null)
     const [isHovered, setIsHovered] = useState(false);
@@ -27,7 +27,7 @@ const PrevCard = ({ userId, uTitle, uName, uImage, uText, isMyArticle, articleId
                 onMouseEnter={hoverStylingOn}
                 onMouseLeave={hoverStylingOff}
                 className="ui items"
-                style={{ background: isHovered ? '#dadada' : '' }}
+                style={{ background: isHovered ? '#dadada' : '', padding: "0.7rem", borderRadius: "5px" }}
             >
                 <div className="item">
                     <div className="image">
@@ -39,7 +39,7 @@ const PrevCard = ({ userId, uTitle, uName, uImage, uText, isMyArticle, articleId
                             <h4 className="meta">{uName}</h4>
                             {isMyArticle && <div className="meta"> My {articleId} Story <i className="book icon" /></div>}
                         </div>
-                        <div className="description">{summary}
+                        <div className="description">{summary}<h5>{Math.round(numberOfWords / 200)} Minuts reading</h5>
                         </div>
                     </div>
                 </div>

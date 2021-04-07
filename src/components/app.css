@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.side-bar{
+    height: 100%;
+    width: 100%;
+    background:lightcyan;
+}
+.app-side-bar{
+    width: 25%;
+}
+.container{
+    justify-content: center;
+    display: flex;
+}
+.app-main{
+    width: 75%;
+}
+.main{
+    padding: 3rem;
+    width: 100%;
+    height: 100%;
+    background: lightyellow;
+}
+
+@media (max-width:768px){
+    .app-side-bar{
+        width: 0;
+        display: none;
+    }
+    .side-bar{
+        width: 0;
+        display: none;
+    }
+    .app-main{
+        width: 100%;
+    }
+}

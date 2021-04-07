@@ -10,6 +10,19 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
     const [postHeaderImg, setPostHeaderImg] = useState('');
     const [numberOfWords, setNumberOfWords] = useState(0);
 
+    const formatDate = (date) => {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [day, month, year].join('-');
+    }
 
 
     const setInput = (e) => {
@@ -40,8 +53,12 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
     }
 
     const sendPost = async () => {
-        const index = usersD.findIndex(e => e.googleId === userId)
+        const index = usersD.findIndex(e => {
+            return e.googleId === userId
+        })
+
         const numOfArticle = usersD.reduce((acc, cur) => cur.article.length + acc, 0)
+        console.log(index)
         console.log(numOfArticle)
         const newArticle = {
             id: numOfArticle + 1,
@@ -50,16 +67,15 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
             postContent: postContent,
             postHeaderImg: postHeaderImg,
             numberOfWords: numberOfWords,
-            // numOfArticle: numOfArticle
+            date: formatDate(new Date())
         }
-        console.log(usersD)
-        // console.log(index)
+
         const tempData =
         {
             ...usersD[index],
             followersID: [],
             likersID: [],
-            article: usersD.length === 0 ? [newArticle] : [...usersD[index].article, newArticle]
+            article: usersD.length === 0 && usersD[index].article ? [newArticle] : [...usersD[index].article, newArticle]
         }
 
         await setUsersD(usersD.map((e, i) => {

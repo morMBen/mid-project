@@ -26,6 +26,7 @@ const Home = ({ usersD, userId, isUserlog }) => {
                                             uImage={ar.postHeaderImg}
                                             uName={user.name}
                                             uText={ar.postContent}
+                                            numberOfWords={ar.numberOfWords}
                                             articleId={i + 1}
                                             isMyArticle={isUserlog ? userId === user.googleId ? true : false : false}
                                         />

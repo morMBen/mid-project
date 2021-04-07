@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios';
 
-// import '../../public/style.css'
+import './app.css'
 
 import MockAPI from '../apis/MockAPI'
 
@@ -29,7 +29,9 @@ function App() {
     setUsersData(data)
   })
 
+  useEffect(() => {
 
+  }, [])
 
   const openCloseLogMenu = () => {
     setLogInIsOpen(!isLogInIsOpen);
@@ -43,7 +45,6 @@ function App() {
 
   useEffect(() => {
     if (userId && usersData && userDetails) {
-      console.log(usersData)
       const index = usersData.findIndex(e => e.googleId === userDetails.googleId);
       if (index === -1) {
         const starterData = {
@@ -69,7 +70,6 @@ function App() {
 
   return (
     <>
-      {console.log(usersData)}
       {isLogInIsOpen && !userlog &&
         <LogIn
           openCloseLogMenu={openCloseLogMenu}
@@ -101,7 +101,9 @@ function App() {
                   <Posts
                     theUserId={userId}
                     setUsersD={setUsersData}
+                    userlog={userlog}
                     usersD={usersData} />
+
                 } />
 
                 <Route path="/:aoutor/:name" exact component={() =>
@@ -115,7 +117,9 @@ function App() {
               </Switch>
             </div>
             <div className="app-side-bar">
-              <Sidebar />
+              <div className="side-bar">
+                <Sidebar />
+              </div>
             </div>
           </div>
         </BrowserRouter>

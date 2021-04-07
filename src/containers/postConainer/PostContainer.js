@@ -30,19 +30,48 @@ const PostContainer = ({ userId, usersD, userlog }) => {
     }, [user, params.name])
 
     const displayPage = () => {
-        return <div>
-            <Link to="/">Home</Link> → <Link to={`/${params.aoutor}`}>{user.name}</Link> → <Link to={`/${params.aoutor}/${params.name}`}>{article.title}</Link>
-            <h1>{article.title}</h1>
-            <img src={article.postImg} alt="post img"></img>
-            <div>{article.postContent}</div>
-        </div>
+        return (
+            <div className="container ui segment">
+                <div className="ui segment" >
+                    <div className="ui breadcrumb">
+                        <Link className="section" to="/">Home</Link>
+                        <i className="right chevron icon divider"></i>
+                        <Link className="section" to={`/${params.aoutor}`}>{user.name}</Link>
+                        <i className="right arrow icon divider"></i>
+                        <Link className="active section" to={`/${params.aoutor}/${params.name}`}>{article.title}</Link>
+                    </div>
+                    <div className="ui hidden divider"></div>
+                    <div style={{ display: 'flex', width: "100%", justifyContent: "space-between" }}>
+                        <div><h5>{user.name}</h5></div>
+                        <div><h5>{article.date}</h5></div>
+                    </div>
+                    <div className="ui clearing divider"></div>
+                    <h1 className="ui very large header">{article.title}</h1>
+                    <div className="ui hidden divider"></div>
+                    <img className="ui fluid image" src={article.postImg} alt="post img"></img>
+                    <div>
+                        <p className="ui very padded segment">{article.postContent}</p>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                            <div style={{ display: "flex" }}>
+                                <i style={{ fontSize: "1.5rem" }} className="heart outline icon" />
+                                <p>{user.likersID.length}</p>
+                            </div>
+                            <div style={{ display: "flex" }}>
+                                <p>{user.likersID.length}</p>
+                                <i style={{ fontSize: "1.5rem" }} className="user outline icon"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div >
+        )
     }
 
     return (
         <div>
             {/* {console.log(article)} */}
-            <div><h5>
-            </h5>
+            <div>
                 {userlog && article ? displayPage() : <Home />}
             </div>
 

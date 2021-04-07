@@ -1,14 +1,20 @@
 // import React, { useState } from 'react'
 import NewPost from '../../containers/newPost/NewPost'
-
-const Posts = ({ setUsersD, usersD, userId }) => {
-
+import Home from '../home/Home'
+const Posts = ({ setUsersD, usersD, theUserId, userlog }) => {
     return (
-
-        < div className="post-container" >
-            { console.log(usersD)}
-            <NewPost userId={userId} setUsersD={setUsersD} usersD={usersD} />
-        </div >
+        <>
+            {!userlog && <Home />}
+            { userlog &&
+                < div className="post-container" >
+                    <NewPost
+                        userId={theUserId}
+                        setUsersD={setUsersD}
+                        usersD={usersD}
+                    />
+                </div >
+            }
+        </>
     )
 }
 
