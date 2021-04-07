@@ -1,0 +1,7 @@
+.myAccountContainer{
+    box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 30%) !important;
+}
+.myAccountContainer:hover{
+
+    box-shadow: 0px 0px 10px 2px rgb(0 0 0 / 40%) !important;
+}

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
+
 import './prevCard.css'
 
-const PrevCard = ({ numberOfWords, userId, uTitle, uName, uImage, uText, isMyArticle, articleId }) => {
+const PrevCard = ({ currentArticleData, currentUserData, usersD, setUsersData, deletedItem, numberOfWords, userId, uTitle, uName, uImage, uText, isMyArticle, articleId }) => {
 
     const [summary, setSummary] = useState(null)
     const [isHovered, setIsHovered] = useState(false);
@@ -12,7 +13,7 @@ const PrevCard = ({ numberOfWords, userId, uTitle, uName, uImage, uText, isMyArt
         setSummary(uText.split('').slice(0, 250))
     }, [uText])
 
-    const hoverStylingOn = () => {
+    const hoverStylingOn = (e) => {
         setIsHovered(true)
     }
     const hoverStylingOff = () => {
@@ -20,31 +21,64 @@ const PrevCard = ({ numberOfWords, userId, uTitle, uName, uImage, uText, isMyArt
     }
 
 
+    const deleteItem = () => {
+        const userIndex = usersD.findIndex((e) => e.googleId === userId)
+        const shallowData = [...usersD]
+        shallowData.splice(userIndex, 1)
+        const tempData = [...shallowData, currentUserData]
+        console.log(usersD)
+        console.log(tempData)
+        // console.log(currentArticleData)
+    }
+
+    const editItem = () => {
+        console.log('edit')
+    }
+
     return (
-        <Link to={`/${uName.split(' ').join('')}/${uTitle.split(' ').join('')}`}>
-            <div
-                id={userId}
-                onMouseEnter={hoverStylingOn}
-                onMouseLeave={hoverStylingOff}
-                className="ui items"
-                style={{ background: isHovered ? '#dadada' : '', padding: "0.7rem", borderRadius: "5px" }}
-            >
-                <div className="item">
-                    <div className="image">
-                        <img src={uImage} alt='img' style={{ opacity: isHovered ? '0.5' : '1' }} />
-                    </div>
-                    <div className="content" >
-                        <h2 className="header">{uTitle}</h2>
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <h4 className="meta">{uName}</h4>
-                            {isMyArticle && <div className="meta"> My {articleId} Story <i className="book icon" /></div>}
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Link to={`/${uName.split(' ').join('')}/${uTitle.split(' ').join('')}`}>
+                <div
+                    id={userId}
+                    onMouseEnter={hoverStylingOn}
+                    onMouseLeave={hoverStylingOff}
+                    className="ui items p-card"
+                    style={{ background: isHovered ? '#dadada' : '', padding: "0.7rem", borderRadius: "5px" }}
+                >
+                    <div className="item">
+                        <div className="image">
+                            <img src={uImage} alt='img' style={{ opacity: isHovered ? '0.5' : '1' }} />
                         </div>
-                        <div className="description">{summary}<h5>{Math.round(numberOfWords / 200)} Minuts reading</h5>
+                        <div className="content" >
+                            <h2 className="header">{uTitle}</h2>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                <h4 className="meta">{uName}</h4>
+                                {isMyArticle && <div className="meta"> My {articleId} Story <i className="book icon" /></div>}
+                            </div>
+                            <div className="description">{summary}<h5>{Math.round(numberOfWords / 200)} Minuts reading</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </Link>
+            </Link>
+            {deletedItem &&
+                <div style={{ display: "flex", alignItems: "center", fontSize: "2rem" }}>
+                    <div
+                        className='p-card-icon'
+                        id="trash"
+                        onClick={deleteItem}
+                    >
+                        <i className="trash alternate outline icon"></i></div>
+                    <div
+                        className='p-card-icon'
+                        id="edit"
+                        onClick={editItem}
+                    >
+                        <i className="edit outline icon"></i>
+                    </div>
+                </div>
+            }
+        </div >
 
     )
 }

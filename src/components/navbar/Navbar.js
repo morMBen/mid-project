@@ -32,7 +32,7 @@ const Navbar = ({ openCloseLogMenu, userlog, userDetails }) => {
             {userDetails && <div className="nav-menu" style={{ maxHeight: menuOpen() }}>
                 <Link to='/' className="menu-link">Our Home</Link>
                 <Link to='/posts' className="menu-link">Wtite New Story</Link>
-                <Link to={`/my-account/${userDetails.name.split(' ').join('')}`} className="menu-link">My Account</Link>
+                <Link to={`/my-account/${userDetails.name.split(' ').join('')}`} className="menu-link">My Stories</Link>
                 <div className="menu-name" >{userDetails.givenName}
                 </div>
                 <img style={{ height: "35px", borderRadius: "20px" }} src={userDetails.imageUrl} alt="my-img"></img>

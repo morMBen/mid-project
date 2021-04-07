@@ -96,7 +96,14 @@ function App() {
                 } >
                 </Route>
                 <Route path="/home" exact component={Home} />
-                <Route path="/my-account/:name" exact component={MyAccount} />
+                <Route path="/my-account/:name" exact component={() =>
+                  <MyAccount
+                    userId={userId}
+                    isUserlog={userlog}
+                    setUsersD={setUsersData}
+                    usersD={usersData}
+                  />}
+                />
                 <Route path="/posts" exact component={() =>
                   <Posts
                     theUserId={userId}
