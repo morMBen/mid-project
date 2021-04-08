@@ -32,8 +32,6 @@ const Sidebar = () => {
         <div style={{ position: "sticky", height: "100vh" }} className='ui segment '>
 
             {p && <ReactWeather
-
-                locationLabel="Munich"
                 isLoading={isLoading}
                 errorMessage={errorMessage}
                 data={data}
