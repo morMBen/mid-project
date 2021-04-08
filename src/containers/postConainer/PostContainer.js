@@ -8,6 +8,7 @@ import Home from '../../pages/home/Home';
 const PostContainer = ({ userId, usersD, userlog }) => {
     const params = useParams()
 
+
     const [user, setUser] = useState(null)
     const [article, setArticle] = useState(null)
 
@@ -50,7 +51,7 @@ const PostContainer = ({ userId, usersD, userlog }) => {
                     <div className="ui hidden divider"></div>
                     <img className="ui fluid image" src={article.postImg} alt="post img"></img>
                     <div>
-                        <div className="ui very padded segment">{ReactHtmlParser(article.postContent)}</div>
+                        <div style={{ fontSize: '22px', lineHeight: '2.5rem' }} className="ui very padded segment">{ReactHtmlParser(article.postContent)}</div>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             <div style={{ display: "flex" }}>
                                 <i style={{ fontSize: "1.5rem" }} className="heart outline icon" />
@@ -70,9 +71,9 @@ const PostContainer = ({ userId, usersD, userlog }) => {
 
     return (
         <div>
-            {/* {console.log(article)} */}
             <div>
                 {userlog && article ? displayPage() : <Home />}
+
             </div>
 
         </div>

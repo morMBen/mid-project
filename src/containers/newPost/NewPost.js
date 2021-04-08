@@ -1,8 +1,8 @@
+
 import React, { useState } from 'react'
 import axios from 'axios';
 import Button from '../../components/buttons/Button'
 import Input from '../../containers/input/Input'
-
 
 
 import { Editor } from 'react-draft-wysiwyg';
@@ -19,6 +19,9 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
 
     const [editorState, setEditorState] = useState(null)
     const [saveToHtml, setSaveToHtml] = useState(null)
+
+
+
 
     const formatDate = (date) => {
         var d = new Date(date),
@@ -89,12 +92,15 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
                 return { ...e }
             }
         }))
+
         console.log(tempData)
-        await axios.put(`https://605b218e27f0050017c063ab.mockapi.io/users/${usersD[index].ids}`, tempData)
         setPostTitle('')
         setEditorState('<p></p>')
         setPostImg('')
         setPostHeaderImg('')
+        setTimeout(async () => {
+            await axios.put(`https://605b218e27f0050017c063ab.mockapi.io/users/${usersD[index].ids}`, tempData)
+        }, 500)
     }
 
     const onEditorStateChange = (e) => {
@@ -109,51 +115,56 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
 
     return (
         <>
-            <div className="main">
-                <h1>Write a new post</h1>
-                <Input
-                    id='setPostTitle'
-                    onUserChange={setInput}
-                    userValue={postTitle}
-                    inputTitle='Title'
-                    typingErrorText='You must enter title'
-                />
 
-                <Input
-                    id='setPostImg'
-                    onUserChange={setInput}
-                    userValue={postImg}
-                    inputTitle='Story Image'
-                    typingErrorText='You must enter a valid url'
-                />
-                <div>
-                    <h2>Post Content</h2>
-                    <div style={{ minHeight: "100%" }}>
-                        {/* <textarea
+            <div className="container ui segment" style={{ padding: "1rem" }}>
+                <div className=" segment" >
+                    <div className='myAccountContainer' style={{ padding: "1rem" }}>
+                        <h1>Write a new post</h1>
+                        <Input
+                            id='setPostTitle'
+                            onUserChange={setInput}
+                            userValue={postTitle}
+                            inputTitle='Title'
+                            typingErrorText='You must enter title'
+                        />
+
+                        <Input
+                            id='setPostImg'
+                            onUserChange={setInput}
+                            userValue={postImg}
+                            inputTitle='Story Image'
+                            typingErrorText='You must enter a valid url'
+                        />
+                        <div>
+                            <h2>Post Content</h2>
+                            <div style={{ minHeight: "100%" }}>
+                                {/* <textarea
                             id='postContent'
                             onChange={setInput}
                             value={postContent}
                             style={{ width: "100%", height: '60vh' }}
                         >
                         </textarea> */}
-                        <Editor
-                            toolbarStyle={{}}
-                            wrapperStyle={{ margin: '0', padding: '0.2rem', minHeight: "50vh", width: "100%", backgroundColor: '#d3d3d3', occupy: "100%" }}
-                            editorStyle={{ width: "100%", minHeight: '50vh', background: '#fff' }}
-                            editorState={editorState}
-                            wrapperClassName="demo-wrapper"
-                            editorClassName="demo-editor"
-                            onEditorStateChange={onEditorStateChange}
-                        />
+                                <Editor
+                                    toolbarStyle={{}}
+                                    wrapperStyle={{ margin: '0', padding: '0.2rem', minHeight: "50vh", width: "100%", backgroundColor: '#d3d3d3', occupy: "100%" }}
+                                    editorStyle={{ width: "100%", minHeight: '50vh', background: '#fff' }}
+                                    editorState={editorState}
+                                    wrapperClassName="demo-wrapper"
+                                    editorClassName="demo-editor"
+                                    onEditorStateChange={onEditorStateChange}
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <Button
+                                buttonValue='Submit'
+                                onClick={() => { sendPost() }}
+                            />
+                            <h4>Number Of words:</h4>
+                            <h4>{numberOfWords}</h4>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <Button
-                        buttonValue='Submit'
-                        onClick={() => { sendPost() }}
-                    />
-                    <h4>Number Of words:</h4>
-                    <h4>{numberOfWords}</h4>
                 </div>
             </div>
         </ >

@@ -13,11 +13,9 @@ import MyAccount from '../pages/myAccount/MyAccount'
 import Posts from '../pages/posts/Posts'
 import LogIn from '../components/logIn/LogIn'
 import PostContainer from '../containers/postConainer/PostContainer'
+import Edit from '../pages/edit/Edit'
 
 
-
-
-import ToDelete from './ToDelete'
 
 
 
@@ -78,7 +76,6 @@ function App() {
   return (
     <>
 
-      {/* <ToDelete /> */}
 
       {isLogInIsOpen && !userlog &&
         <LogIn
@@ -108,6 +105,14 @@ function App() {
                 <Route path="/home" exact component={Home} />
                 <Route path="/my-account/:name" exact component={() =>
                   <MyAccount
+                    userId={userId}
+                    isUserlog={userlog}
+                    setUsersData={setUsersData}
+                    usersD={usersData}
+                  />}
+                />
+                <Route path="/my-account/:name/:title/:edit" exact component={() =>
+                  <Edit
                     userId={userId}
                     isUserlog={userlog}
                     setUsersData={setUsersData}

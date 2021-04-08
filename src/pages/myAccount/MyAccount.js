@@ -10,8 +10,11 @@ const MyAccount = ({ usersD, userId, isUserlog, setUsersData }) => {
         if (Array.isArray(usersD)) {
             setCardContent(
                 <>
+
                     <div
+
                         className="ui segment myAccountContainer">
+                        <h1>My Storys</h1>
                         {usersD.map((user, index) => {
                             if (user.googleId === userId) {
                                 return user.article.map((ar, i) => {
@@ -37,21 +40,22 @@ const MyAccount = ({ usersD, userId, isUserlog, setUsersData }) => {
                                     )
                                 })
                             }
+                            return <React.Fragment key={index + Math.random() * 10}></React.Fragment>
                         })}
 
                     </div>
                 </>
             )
         }
-    }, [usersD, isUserlog, userId])
+    }, [usersD, isUserlog, userId, setUsersData])
 
 
     return (
         <>
             {!isUserlog && <Home />}
-            <div className="container">
-                <div className="main">
-                    <h1>My Storys</h1>
+            <div className="main-app">
+                <div className="container ui segment">
+
                     {isUserlog && cardContent}
                 </div>
             </div >
