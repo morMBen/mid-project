@@ -22,7 +22,7 @@ const Navbar = ({ openCloseLogMenu, userlog, userDetails }) => {
 
     return (
 
-        <div className="my-nav">
+        <div className="my-nav" style={{ fontSize: '17px' }}>
             <Link to='/' className="menu-logo">
                 J<span>unior</span>
             </Link>

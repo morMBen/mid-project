@@ -1,6 +1,9 @@
 const Button = ({ buttonValue, onClick }) => {
     return (
-        <button onClick={onClick}>{buttonValue}</button>
+        <>
+
+            <button onClick={onClick} className="ui violet basic button">{buttonValue}</button>
+        </>
     )
 }
 

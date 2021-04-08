@@ -147,7 +147,7 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
                         </textarea> */}
                                 <Editor
                                     toolbarStyle={{}}
-                                    wrapperStyle={{ margin: '0', padding: '0.2rem', minHeight: "50vh", width: "100%", backgroundColor: '#d3d3d3', occupy: "100%" }}
+                                    wrapperStyle={{ borderRadius: '5px', margin: '0', padding: '0.2rem', minHeight: "50vh", width: "100%", backgroundColor: '#d3d3d3', occupy: "100%" }}
                                     editorStyle={{ width: "100%", minHeight: '50vh', background: '#fff' }}
                                     editorState={editorState}
                                     wrapperClassName="demo-wrapper"
@@ -156,13 +156,15 @@ const NewPost = ({ setUsersD, usersD, userId }) => {
                                 />
                             </div>
                         </div>
-                        <div>
+                        <div className="ui hidden divider"></div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button
                                 buttonValue='Submit'
                                 onClick={() => { sendPost() }}
                             />
-                            <h4>Number Of words:</h4>
-                            <h4>{numberOfWords}</h4>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <h4>Number Of words:  {numberOfWords}</h4>
+                            </div>
                         </div>
                     </div>
                 </div>

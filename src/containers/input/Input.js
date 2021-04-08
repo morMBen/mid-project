@@ -7,14 +7,20 @@ const Input = ({ onUserChange, userValue, inputTitle, id, typingErrorText }) => 
             <div className='ic-container'>
                 <h3>{inputTitle}</h3>
                 <div>
-                    <input
-                        className='ic_input'
-                        id={id}
-                        onChange={onUserChange}
-                        value={userValue}
-                    />
+                    <div className="ui input"
+                        style={{ width: '100%' }}
+                    >
+                        <input
+
+                            input type="text"
+                            placeholder={userValue}
+                            className='ic_input'
+                            id={id}
+                            onChange={onUserChange}
+                            value={userValue}
+                        />
+                    </div>
                 </div>
-                <h4 className="ic_input">{typingErrorText}</h4>
             </div>
             <br />
         </>
