@@ -5,6 +5,7 @@ import PrevCard from '../../containers/cards/PrevCard'
 import Home from '../home/Home'
 const MyAccount = ({ usersD, userId, isUserlog, setUsersData }) => {
     const [cardContent, setCardContent] = useState('')
+
     useEffect(() => {
         if (Array.isArray(usersD)) {
             setCardContent(

@@ -7,7 +7,7 @@ import Home from '../../pages/home/Home';
 
 const PostContainer = ({ userId, usersD, userlog }) => {
     const params = useParams()
-    // const [aoutorAndTitle, setAoutorAndTitle] = useState(null)
+
     const [user, setUser] = useState(null)
     const [article, setArticle] = useState(null)
 
@@ -15,7 +15,6 @@ const PostContainer = ({ userId, usersD, userlog }) => {
     useEffect(() => {
         if (userlog) {
             setUser(usersD.find(element => {
-                // console.log(element.name.split('').join(''))
                 return element.name.split(' ').join('') === params.aoutor
             }))
         }
